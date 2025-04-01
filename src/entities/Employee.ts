@@ -48,6 +48,9 @@ export class Employee {
   @Column({ name: "EMP_DISCHARGE_DATE", type: "date", nullable: true })
   empDischargeDate?: Date;
 
+  @Column({ name: "EMP_JOB_COD", type: "varchar", nullable: false })
+  empCodJob?: string;
+
   @ManyToOne(() => Job, job => job.jobCode, {eager: true})
   @JoinColumn({ name: "EMP_JOB_COD" })
   job!: String;
