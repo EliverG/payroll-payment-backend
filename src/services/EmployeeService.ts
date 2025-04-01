@@ -10,13 +10,17 @@ export class EmployeeService{
         return await this.employeeRepository.findAll();
       }
     
-      async deleteEmployeeByCode(codeEmployee: number): Promise<number>{
+      async deleteEmployeeByCode(codeEmployee: string): Promise<number>{
         const result: DeleteResult = await this.employeeRepository.delete(codeEmployee);
         return result.affected ?? 0;
       }
 
       async createEmployee(newEmployee: Employee): Promise<Employee>{
         return this.employeeRepository.save(newEmployee)
+      }
+
+      async employeeById(codeEmployee: string): Promise<Employee | null>{
+        return this.employeeRepository.findById(codeEmployee)
       }
 
 }

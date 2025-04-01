@@ -24,7 +24,7 @@ export class EmployeeController{
       async deleteEmployeeById(req: Request, res: Response): Promise<void> {
         try {
           const { id } = req.params;
-          const deletedRows = await employeeService.deleteEmployeeByCode(Number(id));
+          const deletedRows = await employeeService.deleteEmployeeByCode(id);
     
           if (deletedRows > 0) {
             res.status(200).json(
@@ -60,6 +60,19 @@ export class EmployeeController{
           
         } catch (err: any) {
            res.status(500).json({ message: "Error al registrar empleado", error: err.message });
+        }
+      }
+
+      async getEmployeeByCode(req: Request, res: Response): Promise<void>{
+        try{
+          const employeeById = await employeeService.employeeById(req.params.code)
+          if(employeeById != null){
+            res.status(200).json(employeeById)
+          }else{
+            res.status(204).json(employeeById)
+          }
+        }catch(err: any){
+          res.status(500).json({message: 'Error al obtener empleado por codigo', error: err.message})
         }
       }
 }

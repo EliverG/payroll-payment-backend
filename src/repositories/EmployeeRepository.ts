@@ -9,16 +9,16 @@ export class EmployeeRepository{
           return await this.repository.find();
         }
       
-        async findById(codEmployee: number): Promise<Employee | null> {
-          return await this.repository.findOneBy({ codEmployee });
+        async findById(empCod: string): Promise<Employee | null> {
+          return await this.repository.findOneBy({ empCod });
         }
       
         async save(employee: Employee): Promise<Employee> {
           return await this.repository.save(employee);
         }
 
-        async delete(idEmployee: number): Promise<DeleteResult>{
-          return await this.repository.delete({codEmployee: idEmployee})
+        async delete(idEmployee: string): Promise<DeleteResult>{
+          return await this.repository.delete({empCod: idEmployee})
         }
     
 }

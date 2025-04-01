@@ -1,46 +1,54 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
+import { Job } from "./Job";
 
-@Entity("EMPLOYEE")
+@Entity("EMPLOYEE", { schema: "NOMINAUSR" })
 export class Employee {
-  @PrimaryGeneratedColumn({ name: "COD_EMPLOYEE" })
-  codEmployee!: number;
+  @PrimaryColumn({ name: "EMP_COD", type: "varchar", length: 15 })
+  empCod!: string;
 
-  @Column({ name: "FIRST_NAME" })
-  firstName!: string;
+  @Column({ name: "EMP_FIRST_NAME", type: "varchar", length: 25 })
+  empFirstName!: string;
 
-  @Column({ name: "SECOND_NAME", nullable: true })
-  secondName?: string;
+  @Column({ name: "EMP_SECOND_NAME", type: "varchar", length: 25, nullable: true })
+  empSecondName?: string;
 
-  @Column({ name: "THIRD_NAME", nullable: true })
-  thirdName?: string;
+  @Column({ name: "EMP_THIRD_NAME", type: "varchar", length: 25, nullable: true })
+  empThirdName?: string;
 
-  @Column({ name: "LAST_NAME" })
-  lastName!: string;
+  @Column({ name: "EMP_LAST_NAME", type: "varchar", length: 25 })
+  empLastName!: string;
 
-  @Column({ name: "SECOND_LAST_NAME", nullable: true })
-  secondLastName?: string;
+  @Column({ name: "EMP_SECOND_LAST_NAME", type: "varchar", length: 25, nullable: true })
+  empSecondLastName?: string;
 
-  @Column({ name: "CUI" })
-  cui!: string;
+  @Column({ name: "EMP_CUI", type: "varchar", length: 15 })
+  empCui!: string;
 
-  @Column({ name: "PHONE_NUMBER" })
-  phoneNumber!: string;
+  @Column({ name: "EMP_DATE_OF_BIRTH", type: "date" })
+  empDateOfBirth!: Date;
 
-  @Column({ name: "DATE_OF_BIRTH", type: "date" })
-  dateOfBirth!: Date;
+  @Column({ name: "EMP_AGE", type: "int" })
+  empAge!: number;
 
-  @Column({ name: "ADDRESS", nullable: true })
-  address?: string;
+  @Column({ name: "EMP_EMAIL", type: "varchar", length: 50, nullable: true })
+  empEmail?: string;
 
-  @Column({ name: "EMAIL", unique: true })
-  email!: string;
+  @Column({ name: "EMP_PHONE_NUMBER", type: "int" })
+  empPhoneNumber!: number;
 
-  @Column({ name: "COD_POSITION" })
-  codPosition!: number;
+  @Column({ name: "EMP_ADDRESS", type: "varchar", length: 200 })
+  empAddress!: string;
 
-  @Column({ name: "STATUS_EMPLOYEE" })
-  statusEmployee!: number;
+  @Column({ name: "EMP_STATUS", type: "varchar", length: 15 })
+  empStatus!: string;
 
-  @Column({ name: "DATE_OF_ADMISSION", type: "date" })
-  dateOfAdmission!: Date;
+  @Column({ name: "EMP_DATE_ADMISSION", type: "date" })
+  empDateAdmission!: Date;
+
+  @Column({ name: "EMP_DISCHARGE_DATE", type: "date", nullable: true })
+  empDischargeDate?: Date;
+
+  @ManyToOne(() => Job, job => job.jobCode, {eager: true})
+  @JoinColumn({ name: "EMP_JOB_COD" })
+  job!: String;
 }
