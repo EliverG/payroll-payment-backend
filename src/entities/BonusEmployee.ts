@@ -5,7 +5,7 @@ import { Bonus } from "./Bonus";
 @Entity({ name: "BONUS_EMPLOYEE", schema: "NOMINAUSR" })
 export class BonusEmployee {
   @PrimaryGeneratedColumn({ name: "BE_ID", type: "int" })
-    id!: number;
+    code!: number;
 
   @Column({ name: "B_COD", type: "varchar", length: 15 })
     bonusCode!: string;
@@ -15,7 +15,7 @@ export class BonusEmployee {
 
   @Column({ name: "BE_DATE_REG", type: "date", default: () => "CURRENT_DATE", nullable: false })
     dateReg!: Date;
-
+    
   @ManyToOne(() => Employee, (employee) => employee.empCod)
     @JoinColumn({ name: "EMP_COD" })
     employee!: Employee;
