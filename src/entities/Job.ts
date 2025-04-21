@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
+import { Department } from "./Department";
 
 @Entity("JOB", { schema: "NOMINAUSR" })
 export class Job {
@@ -13,4 +14,8 @@ export class Job {
 
   @Column({ name: "JOB_SALARY", type: "float" })
   salary?: string;
+
+  @ManyToOne(() => Department, department => department.code, {eager: true})
+  @JoinColumn({ name: 'JOB_COD_DEPARTMENT' })
+  department?: Department;
 }

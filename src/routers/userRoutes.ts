@@ -39,7 +39,7 @@ router.post("/employee/create", (req, res) => employeeController.registryEmploye
 
 router.get("/managements", (req, res) => managementController.getAllManagements(req, res));
 router.get("/managements/code/:code", (req, res) => managementController.getManagementByCode(req, res));
-router.delete("/management/:id", (req, res) => managementController.deleteManagementByCode(req, res));
+router.delete("/management/:code", (req, res) => managementController.deleteManagementByCode(req, res));
 router.post("/management/create", (req, res) => managementController.registryManagement(req, res));
 
 
@@ -56,7 +56,7 @@ router.delete("/bonusEmployee/:id", (req, res) => bonusEmployeeController.delete
 router.post("/bonusEmployee/create", (req, res) => bonusEmployeeController.registryBonusEmployee(req, res))
 router.get("/discounts", (req, res) => discountController.getAllDiscounts(req, res));
 router.get("/discounts/code/:code", (req, res) => discountController.getDiscountByCode(req, res));
-router.delete("/discount/:id", (req, res) => discountController.deleteDiscountById(req, res));
+router.delete("/discount/:codDiscount", (req, res) => discountController.deleteDiscountById(req, res));
 router.post("/discount/create", (req, res) => discountController.registryDiscount(req, res));
 
 router.get("/discount-employee", (req, res) => discountEmployeeController.getAllDiscountEmployees(req, res));

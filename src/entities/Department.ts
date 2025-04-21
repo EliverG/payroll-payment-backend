@@ -17,7 +17,7 @@ export class Department {
   })
   managementCode!: string;
 
-  @ManyToOne(() => Management, (management) => management.departments)
+  @ManyToOne(() => Management, (management) => management.departments, {eager: true})
   @JoinColumn({ name: "DEP_MANAGEMENT_COD" })
   management!: Management;
 }

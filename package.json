@@ -17,10 +17,12 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "oracledb": "^6.7.2",
+    "payroll-payment-backend": "file:",
     "reflect-metadata": "^0.2.2",
     "typeorm": "^0.3.20"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/node": "^22.13.4",
     "ts-node": "^10.9.2",

@@ -25,7 +25,7 @@ export class ManagementRepository {
   }
 
   // Eliminar un management por código
-  async delete(code: string): Promise<DeleteResult> {
-    return await this.repository.delete({ code });
+  async delete(codMan: string): Promise<DeleteResult> {
+    return await this.repository.delete({ code: codMan });
   }
 }

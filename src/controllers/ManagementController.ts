@@ -25,6 +25,7 @@ export class ManagementController {
   async deleteManagementByCode(req: Request, res: Response): Promise<void> {
     try {
       const { code } = req.params;  
+      console.log(code)
       const deletedRows = await managementService.deleteManagementByCode(code);
 
       if (deletedRows > 0) {
