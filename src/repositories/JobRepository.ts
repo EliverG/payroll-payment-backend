@@ -2,8 +2,8 @@ import { DeleteResult } from "typeorm";
 import { AppDataSource } from "../data-source";
 import { Job } from "../entities/Job";
 
-export class JobRepository{
-      private repository = AppDataSource.getRepository(Job);
+export class JobRepository {
+  private repository = AppDataSource.getRepository(Job);
 
         async findAll(): Promise<Job[]> {
           return await this.repository.find();

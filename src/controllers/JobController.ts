@@ -36,6 +36,10 @@ export class JobController {
         });
         return;
       }
+    } catch (err: any) {
+      res.status(500).json({ message: 'Error al obtener puesto por código', error: err.message });
+    }
+  }
 
       res.status(200).json({
         message: "Puesto eliminado correctamente",
