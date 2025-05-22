@@ -41,16 +41,8 @@ export class JobController {
     }
   }
 
-      res.status(200).json({
-        message: "Puesto eliminado correctamente",
-        totalDelete: deletedRows
-      });
-      return;
-    } catch (err: any) {
-      res.status(500).json({ message: "Error eliminando Puesto", error: err.message });
-      return;
-    }
-  }
+
+
 
   async registryJob(req: Request, res: Response): Promise<void> {
     try {

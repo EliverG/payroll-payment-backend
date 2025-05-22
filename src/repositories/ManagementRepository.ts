@@ -9,9 +9,7 @@ export class ManagementRepository {
           return await this.repository.find();
         }
       
-        async findByCode(code: string): Promise<Management | null> {
-          return await this.repository.findOneBy({ code });
-        }
+
       
         async save(management: Management): Promise<Management> {
           return await this.repository.save(management);
@@ -25,11 +23,7 @@ export class ManagementRepository {
     });
   }
 
-  // Guardar un nuevo management
-  async save(managementData: Partial<Management>): Promise<Management> {
-    const newManagement = this.repository.create(managementData);
-    return await this.repository.save(newManagement);
-  }
+
 
   // Eliminar un management por código
   async delete(codMan: string): Promise<DeleteResult> {

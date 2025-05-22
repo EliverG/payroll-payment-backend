@@ -11,16 +11,16 @@ export class JobService {
         return await this.jobRepository.findAll();
       }
     
-      async deleteJobByCode(jobCode: string): Promise<number>{
+      async deleteJobById(jobCode: string): Promise<number>{
         const result: DeleteResult = await this.jobRepository.delete(jobCode);
         return result.affected ?? 0;
       }
 
-      async createJob(newJob: Job): Promise<Job>{
+      async registryJob(newJob: Job): Promise<Job>{
         return this.jobRepository.save(newJob)
       }
    
-      async jobById(jobCode: string): Promise<Job | null>{
+      async getJobByCode(jobCode: string): Promise<Job | null>{
               return this.jobRepository.findById(jobCode)
             }
 

@@ -15,8 +15,6 @@ import { JobController } from "../controllers/JobController";
 //         res.status(400).json({ message: "No se recibieron datos para crear el descuento de empleado" });
 
 
-import { JobController } from "../controllers/JobController";
-
 const userController = new UserController();
 const employeeController = new EmployeeController()
 const managementController = new ManagementController()
@@ -28,7 +26,6 @@ const discountController = new DiscountController()
 const discountEmployeeController = new DiscountEmployeeController()
 const jobController = new JobController()
 
-const jobController = new JobController();
 
 const router = Router();
 
@@ -67,13 +64,13 @@ router.get("/discount-employee", (req, res) => discountEmployeeController.getAll
 router.get("/discount-employee/:id", (req, res) => discountEmployeeController.getDiscountEmployeeById(req, res));
 router.delete("/discount-employee/:id", (req, res) => discountEmployeeController.deleteDiscountEmployeeById(req, res));
 router.post("/discount-employee/create", (req, res) => discountEmployeeController.registryDiscountEmployee(req, res));  
-
+/*
 router.get("/job", (req, res) => jobController.getAllJobs(req, res));
 router.get("/job/:code", (req, res) => jobController.getJobByCode(req, res));
 router.delete("/job/:id", (req, res) => jobController.deleteJobByCode(req, res));
 router.post("/job/create", (req, res) => jobController.registryJob(req, res));
 router.put("/job/:id", (req, res) => jobController.updateJob(req, res));
-
+*/
 
 
 router.get("/job", jobController.getAllJob)

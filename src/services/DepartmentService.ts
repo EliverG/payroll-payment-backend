@@ -19,7 +19,7 @@ export class DepartmentService{
       }
 
         async createDepartment(newDepartment: Department): Promise<Department> {
-          const management = await this.managementRepository.findByCode(newDepartment.managementCode);
+          const management = await this.managementRepository.findById(newDepartment.managementCode);
         
           if (!management) {
             throw new Error(`Management con código '${newDepartment.managementCode}' no existe`);
