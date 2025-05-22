@@ -9,7 +9,7 @@ export class ManagementRepository{
           return await this.repository.find();
         }
       
-        async findById(code: string): Promise<Management | null> {
+        async findByCode(code: string): Promise<Management | null> {
           return await this.repository.findOneBy({ code });
         }
       

@@ -8,6 +8,8 @@ import { DepartmentController } from "../controllers/DepartmentController";
 import { BonusController } from "../controllers/BonusController";
 import { BonusEmployeeController } from "../controllers/BonusEmployeeController";
 
+import { JobController } from "../controllers/JobController";
+
 const userController = new UserController();
 const employeeController = new EmployeeController()
 const managementController = new ManagementController()
@@ -15,6 +17,8 @@ const authController = new AuthController()
 const departmentController = new DepartmentController();
 const bonusController = new BonusController();
 const bonusEmployeeController = new BonusEmployeeController();
+
+const jobController = new JobController();
 
 const router = Router();
 
@@ -43,6 +47,14 @@ router.post("/bonus/create", (req, res) => bonusController.registryBonus(req, re
 router.get("/bonusEmployee", bonusEmployeeController.getAllBonusEmployee)
 router.delete("/bonusEmployee/:id", (req, res) => bonusEmployeeController.deleteBonusEmployeeById(req, res));
 router.post("/bonusEmployee/create", (req, res) => bonusEmployeeController.registryBonusEmployee(req, res))
+
+
+router.get("/job", jobController.getAllJob)
+router.delete("/job/:id", (req, res) => jobController.deleteJobById(req, res));
+router.post("/job/create", (req, res) => jobController.registryJob(req, res));
+router.get("/job/code/:code", (req, res) => jobController.getJobByCode(req, res));
+router.get("/jobs/details", (req, res) => jobController.getJobsWithDetails(req, res));
+
 
 router.get("/usr-rol/:id", (req, res) => authController.getRolByUsr(req, res));
 export default router;

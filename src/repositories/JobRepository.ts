@@ -9,16 +9,16 @@ export class JobRepository{
           return await this.repository.find();
         }
       
-        async findById(codJob: number): Promise<Job | null> {
-          return await this.repository.findOneBy({ codJob });
+        async findById(jobCode: string): Promise<Job | null> {
+          return await this.repository.findOneBy({ jobCode });
         }
       
         async save(job: Job): Promise<Job> {
           return await this.repository.save(job);
         }
 
-        async delete(idJob: number): Promise<DeleteResult>{
-          return await this.repository.delete({codJob: idJob})
+        async delete(idJob: string): Promise<DeleteResult>{
+          return await this.repository.delete({jobCode: idJob})
         }
     
 }

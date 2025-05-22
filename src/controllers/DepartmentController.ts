@@ -43,7 +43,7 @@ export class DepartmentController{
               }
             }
 
-      async registryDepartment(req: Request, res: Response): Promise<void>{
+      /*async registryDepartment(req: Request, res: Response): Promise<void>{
         try {
           console.log("DepartmentReq 1: ", req.body)
 
@@ -61,5 +61,23 @@ export class DepartmentController{
         } catch (err: any) {
            res.status(500).json({ message: "Error al registrar Departamento", error: err.message });
         }
-      }
+      }*/
+
+        async registryDepartment(req: Request, res: Response): Promise<void> {
+          try {
+            const departmentReq = req.body;
+        
+            if (!departmentReq) {
+              res.status(400).json({ message: "Datos de departamento requeridos" });
+              return;
+            }
+        
+            const newDepartment = await departmentService.createDepartment(departmentReq);
+            res.status(201).json(newDepartment);
+          } catch (err: any) {
+            res.status(400).json({ message: err.message || "Error al registrar Departamento" });
+          }
+        }
+        
+      
 }
