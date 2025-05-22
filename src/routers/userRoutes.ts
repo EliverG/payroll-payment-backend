@@ -9,7 +9,6 @@ import { BonusController } from "../controllers/BonusController";
 import { BonusEmployeeController } from "../controllers/BonusEmployeeController";
 import { DiscountController } from "../controllers/DiscountController";
 import {DiscountEmployeeController} from "../controllers/DiscountEmployeeController";
-import { DiscountEmployeeService } from "../services/DiscountEmployeeService";
 import { JobController } from "../controllers/JobController";
 
 //         res.status(400).json({ message: "No se recibieron datos para crear el descuento de empleado" });
