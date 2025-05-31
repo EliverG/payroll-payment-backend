@@ -27,18 +27,24 @@ export class JobController {
   async deleteJobById(req: Request, res: Response): Promise<void> {
     try {
       let { id } = req.params;
-      let deletedRows = await jobService.deleteJobByCode(id);
+    let deletedRows = await jobService.deleteJobByCode(id);
 
-      if (deletedRows === 0) {
-        res.status(404).json({
-          message: "Puesto no encontrado",
-          totalDelete: deletedRows
-        });
-        return;
-      }
-    } catch (err: any) {
-      res.status(500).json({ message: 'Error al obtener puesto por código', error: err.message });
+    if (deletedRows === 0) {
+      res.status(404).json({
+        message: "Puesto no encontrado",
+        totalDelete: deletedRows
+      });
+      return;
     }
+    
+    res.status(200).json({
+      message: "Puesto eliminado correctamente",
+      totalDelete: deletedRows
+    });
+
+  } catch (err: any) {
+    res.status(500).json({ message: 'Error al obtener puesto por código', error: err.message });
+  }
   }
 
 

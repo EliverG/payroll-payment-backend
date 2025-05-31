@@ -22,7 +22,7 @@ export class ManagementController {
     }
   }
 
-  async deleteManagementByCode(req: Request, res: Response): Promise<void> {
+  /*async deleteManagementByCode(req: Request, res: Response): Promise<void> {
     try {
       const { code } = req.params;  
       console.log(code)
@@ -51,7 +51,30 @@ export class ManagementController {
         });
       }
     }
-  }
+  }*/
+
+    async deleteManagementByCode(req: Request, res: Response): Promise<void> {
+      try {
+        let { code } = req.params;
+      let deletedRows = await managementService.deleteManagementByCode(code);
+  
+      if (deletedRows === 0) {
+        res.status(404).json({
+          message: "Gerencia no encontrado",
+          totalDelete: deletedRows
+        });
+        return;
+      }
+      
+      res.status(200).json({
+        message: "Gerencia eliminado correctamente",
+        totalDelete: deletedRows
+      });
+  
+    } catch (err: any) {
+      res.status(500).json({ message: 'Error al obtener Gerencia por código', error: err.message });
+    }
+    }
 
   async registryManagement(req: Request, res: Response): Promise<void> {
     try {
