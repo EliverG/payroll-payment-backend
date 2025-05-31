@@ -1,26 +1,34 @@
-import { BonusEmployee } from './../entities/BonusEmployee';
-import { BonusEmployeeRepository } from '../repositories/BonusEmployeeRepository';
-import { DeleteResult } from 'typeorm';
+import { BonusEmployee } from "./../entities/BonusEmployee";
+import { BonusEmployeeRepository } from "../repositories/BonusEmployeeRepository";
+import { DeleteResult } from "typeorm";
+import { ReportRepository } from "../repositories/reportRepository";
 
-export class BonusEmployeeService{
+export class BonusEmployeeService {
+  private bonusEmployeeRepository = new BonusEmployeeRepository();
 
-    private bonusEmployeeRepository = new BonusEmployeeRepository()
+  async getAllUsers(): Promise<BonusEmployee[]> {
+    return await this.bonusEmployeeRepository.findAll();
+  }
 
-      async getAllUsers(): Promise<BonusEmployee[]> {
-        return await this.bonusEmployeeRepository.findAll();
-      }
-    
-      async deleteBonusEmployeeByCode(code: number): Promise<number>{
-        const result: DeleteResult = await this.bonusEmployeeRepository.delete(code);
-        return result.affected ?? 0;
-      }
+  async deleteBonusEmployeeByCode(code: number): Promise<number> {
+    const result: DeleteResult = await this.bonusEmployeeRepository.delete(
+      code
+    );
+    return result.affected ?? 0;
+  }
 
-      async createBonusEmployee(newBonusEmployee: BonusEmployee): Promise<BonusEmployee>{
-        return this.bonusEmployeeRepository.save(newBonusEmployee)
-      }
+  async createBonusEmployee(
+    newBonusEmployee: BonusEmployee
+  ): Promise<BonusEmployee> {
+    return this.bonusEmployeeRepository.save(newBonusEmployee);
+  }
 
-      /*async managementById(code: Number): Promise<Management | null>{
+  async generateEmployeeBonusReport() {
+    const data = await ReportRepository.getEmployeesWithBonuses();
+    return data;
+  }
+
+  /*async managementById(code: Number): Promise<Management | null>{
               return this.managementRepository.findById(code)
             }*/
-
 }

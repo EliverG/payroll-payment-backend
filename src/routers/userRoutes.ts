@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { UserController } from "../controllers/userController";
 import { EmployeeController } from "../controllers/EmployeeController";
-import { AuthService } from "../services/AuthService";
 import { AuthController } from "../controllers/AuthController";
 import { ManagementController } from "../controllers/ManagementController";
 import { DepartmentController } from "../controllers/DepartmentController";
@@ -54,6 +53,10 @@ router.post("/bonus/create", (req, res) => bonusController.registryBonus(req, re
 router.get("/bonusEmployee", bonusEmployeeController.getAllBonusEmployee)
 router.delete("/bonusEmployee/:id", (req, res) => bonusEmployeeController.deleteBonusEmployeeById(req, res));
 router.post("/bonusEmployee/create", (req, res) => bonusEmployeeController.registryBonusEmployee(req, res))
+router.get("/bonusEmployee/download/csv", (req, res) => bonusEmployeeController.downloadEmployeeBonusCSV(req, res));
+
+
+
 router.get("/discounts", (req, res) => discountController.getAllDiscounts(req, res));
 router.get("/discounts/code/:code", (req, res) => discountController.getDiscountByCode(req, res));
 router.delete("/discount/:codDiscount", (req, res) => discountController.deleteDiscountById(req, res));
